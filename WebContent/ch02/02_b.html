@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<ul>
+	    <li>First item</li>
+	    <li class="selected">Second item</li>
+	    <li>Third item</li>
+	    <li>Fourth item</li>
+	    <li>Fifth item</li>
+	    <div></div>
+	</ul>
+</body>
+<script>
+		//var rs = jQuery('li.selected').nextAll();	
+		var rs = jQuery('li.selected ~ div')	
+		alert(rs.length);
+</script>
+</html>

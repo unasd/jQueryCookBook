@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<a>
+		<span>
+			<div></div>
+		</span>
+		<div></div>
+	</a>
+</body>
+<script>
+	var anchors = jQuery('a');
+	
+	//Getting all direct children of all anchor elements
+	//can be achieved in three ways:
+		
+	//#1
+	alert(anchors.children().length);
+	
+	//#2
+	alert(jQuery('> *', anchors).length);
+	
+	//#3
+	alert(anchors.find('> *').length);
+	
+	//alert(jQuery('a > *').length)
+ 
+</script>
+</html>

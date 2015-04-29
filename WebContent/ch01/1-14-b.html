@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a>jquery.com</a>
+<div class="toggle has">jquery.com</div>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js">
+</script>
+<script type="text/JavaScript">
+// alerts the jQuery home page URL
+ //jQuery('a').attr('href','http://www.jquery.com').attr('href')
+jQuery('a').attr({'href':'http://www.jquery.com','title':'jquery.com'}).attr('href')
+jQuery('a').addClass('add').toggleClass('toggle')
+jQuery('div').toggleClass('toggle')
+</script>
+</body>
+</html>

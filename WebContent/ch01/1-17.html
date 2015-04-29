@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p></p>
+<div></div>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js">
+</script>
+<script type="text/JavaScript">
+	(function($){ //function to create private scope with $ parameter
+	    alert('function')//private scope and using $ without worry of conflict
+	})(jQuery); //invoke nameless function and pass it the jQuery object
+	
+	
+     $('p').text('Hello World, I am a <p> element.');
+     alert($('p').text());
+     $('div');
+</script>
+</body>
+</html>
+    

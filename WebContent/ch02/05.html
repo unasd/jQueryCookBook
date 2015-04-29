@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<title>Insert title here</title>
+
+</head>
+<body>
+	<span>Hello Bob!</span>
+	
+	<div><p></p></div>
+	<div>
+		<p></p>	
+		<p>
+			<a href="#">href</a>
+		</p>
+	</div>
+</body>
+<script>
+	var bob = jQuery('span:contains("Bob")');
+	alert(bob.html());
+	
+	var div = jQuery('div:has(p a)');
+	div.on("click", function(){
+		jQuery('a').html('클릭');
+	})
+
+	jQuery('p').filter(function(){
+    	return /(^|\s)(apple|orange|lemon)(\s|$)/.test(jQuery(this).text());
+	});
+</script>
+</html>

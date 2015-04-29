@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<p><em>jQuery</em> 함수에 두 번째 매개변수로 <em>컨텍스트</em> 참조를 전달하는 식으로 코드를 작성해도 결과는 동일하다는 것을 기억하자</p>
+	<p>사실 상기 코드는 단순한 <em>데모용</em> 코드이기에, 실제로 저렇게 사용하는 것은 적절하지 않다.</p>
+	<p>만일 <em>요소</em> 안에 있는 모든 <em>이탤릭</em> 자식 요소들을 선택하고자 한다면</p>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+	/* alert('세 문단은 '+
+			jQuery('p').find('em').length
+			+'개의 이탤릭 자식 요소를 갖고 있다.'); */
+	alert('세 문단은 '+
+			jQuery('p em').length
+			+'개의 이탤릭 자식 요소를 갖고 있다.');
+</script>
+</html>
