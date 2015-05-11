@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
 	<a href="#" class="external">link</a>
@@ -11,14 +12,13 @@
 	<a href="#"></a>
 	<a href="#" class="external">link</a>
 	<a href="#" class="external">link</a>
-	<a href="#"></a></li>
+	<a href="#"></a>
 	<a href="#">link</a>
 	<a href="#">link</a>
 	<a href="#">link</a>
 	<a href="#">link</a>
 	<a href="#">link</a>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 	alert(jQuery('a')
 			.filter(function(index){return $(this).hasClass('external');})

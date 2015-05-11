@@ -7,12 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>The Dom is ready!</p>
+<ul id="horses"></ul>
 </body>
 <script>
-	jQuery(function(){
-		alert(jQuery('p').text());
-	});
+<!-- jQuery.map(배열, 배열) 두 개의 배열을 결합-->
+(function($) {
+    $(document).ready(function() {
+        var horseBreeds = ['Quarter Horse', 'Thoroughbred', 'Arabian'];
+        var draftBreeds = ['Belgian', 'Percheron'];
+
+        var breeds = $.merge( horseBreeds, draftBreeds );
+        $('#horses').html( '<li>' + breeds.join('</li><li>') + '</li>' );
+    });
+})(jQuery);
 </script>
 </html>
-

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<a href="daum.net" target="_blank">daum.net</a><br/>
+<a href="www.daum.net" target="_blank">www.daum.net</a><br/>
+<a href="http://www.daum.net" target="_blank">http://www.daum.net</a><br/>
+<a href="#">##</a>
+</body>
+<script>
+(function($) {
+    $(document).ready(function() {
+    	console.log('aaa');
+    	console.log(jQuery.support.hrefNormalized);
+     $('a')
+         .filter(function() {
+             var href = $(this).attr('href');
+             // Normalize the URL
+             if ( !jQuery.support.hrefNormalized ) {
+            	 console.log('aa');
+                 var loc = window.location;
+                 href = href.replace( loc.protocol + '//' + loc.host + loc.pathname, '');
+             }
+             console.log(( href.substr(0, 1) == '#' ));
+             // This anchor tag is of the form <a href="#hash">
+             return ( href.substr(0, 1) == '#' );
+        })
+        .click(function() {
+            // Special click handler code
+        });
+    });
+})(jQuery);
+</script>
+</html>

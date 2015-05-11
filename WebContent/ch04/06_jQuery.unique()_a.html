@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<ul>
+<li class="animals">cat</li>
+<li class="animals">dog</li>
+<li class="animals horses">horses</li>
+<li class="horses">quarter horses</li>
+<li class="horses">arabian horses</li>
+</ul>
+<hr/>
+<ul id="animals1"></ul>
+</body>
+<hr/>
+<ul id="animals2"></ul>
+</body>
+<script>
+<!-- jQuery.unique(배열) 중복된 요소 제거-->
+(function($) {
+    $(document).ready(function() {
+    	// unique()를 사용하려면 컬렉션배열 자체를 가져온다
+    	// animals horses 클래스에 모두 해당하는 세번째 <li>가 중복된다
+        var animals = $('li.animals').get();
+        var horses = $('li.horses').get();
+        var tmp = $.merge( animals, horses );
+        $('#animals1').append( $(tmp).clone() ); // $(배열) 배열을 html요소로 만듬
+        
+        // 중복을 제거
+        tmp = $.unique( tmp );
+        $('#animals2').append( $(tmp).clone() );
+    });
+})(jQuery);
+</script>
+</html>

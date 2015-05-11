@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<ul id="months"></ul>
+<ul id="days"></ul>
+</body>
+<script>
+<!-- jQuery.grep(배열, 콜백) : 배열에서 요소를 필터링하고 제거 -->
+(function($) {
+    $(document).ready(function() {
+        var months = [  'January', 'February', 'March', 'April', 'May',
+                        'June', 'July', 'August', 'September', 'October',
+                        'November', 'December'];
+        	// function(배열요소의 값, 루프 회수 증가 값)
+        months = $.grep(months, function(value, i) {
+        	// indexOf('e') 배열요소의 e의 위치 리턴, 첫번째 까지만 검색
+        	console.log(i + ' / ' +value.indexOf('e'));
+            return ( value.indexOf('J') == 0 );
+        });
+        	// 배열.join(구분자) 매개변수로 입력된 값이 array 각 항목 사이에
+        $('#months').html( '<li>' + months.join('</li><li>') + '</li>' );
+    });
+})(jQuery);
+</script>
+</html>
