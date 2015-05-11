@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<input type="text" name="first_name" class="cleanup" />
+<input type="text" name="last_name" class="cleanup" />
+</body>
+<script>
+<!-- jQuery.trim() 폼 값 또는 문자열에서 공백 제거-->
+(function($) {
+    $(document).ready(function() {
+    	// input란에서 커서가 밖으로 옮겨졌을 때
+        $('input.cleanup').blur(function() {
+        	// 문자열의 처음과 끝에 있는 공백만 제거
+            var value = $.trim($(this).val()); 
+            $(this).val(value);
+        });
+    });
+})(jQuery);
+</script>
+</html>
