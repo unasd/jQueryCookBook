@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<title></title>
+</head>
+<body>
+	<select id='country'>
+		<!-- <option value='init'>init</option> -->
+		<option value='US'>US</option>
+		<option value='CA'>CA</option>
+	</select><br/><br/><br/>
+
+	<input type="text" id="state" value='state'/><br/><br/><br/>
+
+	<input type="text" id="province" value='province'/><br/><br/><br/>
+
+</body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// 시작 시 화면에 보여줄지를 설정
+		// toggle()을 사용하게 되면 이전 상태에 따라 현재 상태를 반대로 바꿔줍니다.
+		$('#state').toggle($('#country').val() == 'US');
+		$('#province').toggle($('#country').val() == 'CA');
+
+		// country 셀렉터가 마우스에 의해 변경되었을 때 가시성을 변겅
+		$('#country').change(function(){
+			$('#state').toggle($(this).val() == 'US');
+			$('#province').toggle($(this).val() == 'CA');
+		});
+
+		// country 셀렉터가 키보드에 의해 변경되었을 때 가시성을 변경
+		$('#country').keyup(function(){
+			//alert('keyup');
+			$('#state').toggle($(this).val() == 'US');
+			$('#province').toggle($(this).val() == 'CA');
+		});
+	});
+</script>
+</html>

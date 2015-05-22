@@ -1,0 +1,47 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<title>5_6_b.html</title>
+</head>
+<body>
+	<span class="reveal" hidden>Ready?</span><br/><br/>
+	<span class="reveal" hidden>On your mark!</span><br/><br/>
+	<span class="reveal" hidden>Get set!</span><br/><br/>
+	<span class="reveal" hidden>Go!</span><br/><br/>
+</body>
+<script type="text/javascript">
+	// 배열(일반적으로는 jQuery 배열, 하지만 일반 배열이 될 수도 있다)을 반복하면서
+	// 각 요소에 대해 콜백 함수를 호출한다. 단, 각각의 콜백 사이에 시간 지연을 두도록 한다.
+	// 콜백은 일반적은 jQuery.each() 콜백과 동일한 매개변수를 갖는다.
+	jQuery.slowEach = function (array, interval, callback) {
+		if(!array.length) return;
+		var i = 0;
+		next();
+
+		function next (argument) {
+			if(callback.call(array[i], i, array[i]) !== false)
+				//console.log('i1 : '+i);
+				// 명시적인 반복문이 존재하지 않는다 
+				if(++i < array.length){
+					// setTimeout() 콜백 안에서 반복용 i변수를 증가시키고 있다 
+					setTimeout(next, interval);
+					//console.log('i2 : '+i);
+				} // 반복처리 동안 변수 값 보호를 위해 클로저를 사용하고 있다 
+				//console.log('i3 : '+i);
+		}
+		return array;
+	};
+
+	// turn array 개체를 반복하면서 각 요소에 대해 콜백 함수를 호출한다.
+	// 단 각각의 콜백 사이에는 지연 시간을 두도록 한다.
+	// 콜백은 일반적인 jQuery(array; next와 동일한 매개변수를 갖는다.)
+	jQuery.fn.slowEach = function (interval, callback) {
+		return jQuery.slowEach(this, interval, callback);
+	};
+
+	// 0.5초마다 요소를 보이게 한다. 
+	$('.reveal').slowEach(500, function () {
+		$(this).show();
+	});
+</script>
+</html>

@@ -1,0 +1,17 @@
+5_2.html
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<a href="#" id="test" onclick="clicked(this);">Test</a>
+
+<script type="text/javascript">
+	function clicked (it) {
+		alert(it.id);
+		alert(this.id);
+		alert(this === window);
+	}
+</script>
+</body>
+</html>

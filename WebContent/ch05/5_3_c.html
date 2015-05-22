@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<title></title>
+</head>
+<body>
+	<select id='country'>
+		<!-- <option value='init'>init</option> -->
+		<option value='US'>US</option>
+		<option value='CA'>CA</option>
+	</select><br/><br/><br/>
+
+	<input type="text" id="state" value='state'/><br/><br/><br/>
+
+	<input type="text" id="province" value='province'/><br/><br/><br/>
+
+</body>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('#country')
+		.bind('change keyup', function(){
+			var value = $(this).val();
+			$('#state').toggle(value == 'US');
+			$('#province').toggle(value == 'CA');
+		})
+		.trigger('keyup'); // trigger() 메서드를 사용해 이벤트를 발생시킨다 
+	});
+</script>
+</html>

@@ -1,0 +1,24 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<title>5_6_a.html</title>
+</head>
+<body>
+	<span class="reveal" hidden>Ready?</span><br/><br/>
+	<span class="reveal" hidden>On your mark!</span><br/><br/>
+	<span class="reveal" hidden>Get set!</span><br/><br/>
+	<span class="reveal" hidden>Go!</span><br/><br/>
+</body>
+<script type="text/javascript">
+	/*$('.reveal').each(function(){
+		setTimeout($(this).show(), 10000);
+	});*/
+	console.log($('.reveal').eq(0).html());
+
+	setTimeout(function(){
+		$('.reveal').each(function(){
+			$(this).show();
+		})
+	}, 1000);
+</script>
+</html>

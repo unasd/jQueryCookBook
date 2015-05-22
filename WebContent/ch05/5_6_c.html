@@ -1,0 +1,37 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<title></title>
+</head>
+<body>
+	<span class="reveal" hidden>Ready?</span><br/><br/>
+	<span class="reveal" hidden>On your mark!</span><br/><br/>
+	<span class="reveal" hidden>Get set!</span><br/><br/>
+	<span class="reveal" hidden>Go!</span><br/><br/>
+</body>
+<script type="text/javascript">
+// jQuery개체 또는 배열을 역순으로 반복하여 처리한다. 
+jQuery.reverseEach = function(object, callback){
+	for(var i=object.length; i>= 0; --i){
+		var value = object[i];
+		console.log(i, value);
+		if(callback.call(value, i, value) === false){
+			break;
+		}
+	}
+};
+
+// jQuery 개체인 체인 Array를 역순으로 반복하여 처리한다. 
+jQuery.fn.reverseEach = function(callback){
+	jQuery.reverseEach(this, callback);
+	return this;
+};
+
+$(document).ready(function(){	
+	$('.reveal').reverseEach(function () {
+		$(this).show();
+	});	
+});
+
+</script>
+</html>
