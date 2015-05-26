@@ -1,0 +1,22 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<title>Window와 Document의 영역 알아내기 </title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+jQuery(document).ready(function () {
+	// 화면상에 표시되는 영역의 높이를 반환
+	alert('Window height : ' + jQuery(window).height());
+	// 화면ㄴ상에 표시되는 영역의 너비를 반환 
+	alert('Window width : ' + jQuery(window).width());
+
+	// document의 높이를 반환 
+	alert('Document height : ' +jQuery(document).height());
+	// document의 너비를 반환 
+	alert('Document width : ' +jQuery(document).width());
+})
+</script>
+</html>

@@ -1,0 +1,54 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<style type="text/css">
+	#foo{
+		width: 300px;
+		padding: 10px;
+		height: 200px;
+		border: 1px solid black;
+		position: relative;
+		overflow: auto;
+	}
+</style>
+</head>
+
+<body>
+	<input type="button" id="bar" value="Click to scroll to last paragraph"/>
+	<input type="button" id="bam" value="Click to scroll to last paragraph with animation"/>
+	<div id="foo">
+		<p>
+		This is the first paragraph. Lorem ipsum dolor sit amet, consectetur 
+		adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+		aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+		ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+		id est laborum.
+		</p>
+		<p>
+		This is the second paragraph. Lorem ipsum dolor sit amet, consectetur 
+		adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+		aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+		ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+		id est laborum.
+		</p>
+	</div>
+
+<script type="text/javascript">
+var $foo = jQuery('#foo');
+jQuery('#bar').click(function () {
+	var lastParagraphPosition = jQuery('#foo p:last').position();
+	var scrollPosition = $foo.scrollTop() + lastParagraphPosition.top;
+	$foo.scrollTop(scrollPosition);
+});
+jQuery('#bam').click(function () {
+	var lastParagraphPosition = jQuery('#foo p:last').position();
+	var scrollPosition = $foo.scrollTop() + lastParagraphPosition.top;
+	jQuery('#foo').animate({scrollTop: scrollPosition}, 300);
+});
+</script>
+</body>
+</html>

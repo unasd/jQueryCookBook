@@ -1,0 +1,45 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<title></title>
+</head>
+
+<!-- 자식엘리먼틔의 위치에 영향을 미치려면 position속성 값을 absolute 또는 relative로 지정  -->
+<body id="the_offset_parent" style="position:absolute">
+	<h1>Finding the Offset of an Element</h1>
+	<div id="foo">
+		<div id="bar">Some text inside #bar, which is inside #foo</div>
+	</div>
+
+	<div id="results"></div>
+</body>
+
+<script type="text/javascript">
+jQuery(document).ready(function () {
+	var $foo = jQuery('#foo');
+	var $bar = jQuery('#bar');
+
+	var $results = jQuery('#results');
+	var fooPosition = $foo.position();
+	var barPosition = $bar.position();
+	var fooOffset = $foo.offset();
+	var barOffset = $bar.offset();
+	var $fooOffsetParent = $foo.offsetParent(); // 자식엘리먼트의 위치에 영향을 미치는 상위엘리먼트 
+	var $barOffsetParent = $bar.offsetParent();
+
+	$results
+	.append('<p>#foo position.top: ' + fooPosition.top + '</p>')
+	.append('<p>#foo position.left: ' + fooPosition.left + '</p>')
+	.append('<p>#bar position.top: ' + barPosition.top + '</p>')
+	.append('<p>#bar position.left: ' + barPosition.left + '</p>')
+
+	.append('<p>#foo offset.top: ' + fooOffset.top + '</p>')
+	.append('<p>#foo offset.left: ' + fooOffset.left + '</p>')
+	.append('<p>#bar offset.top: ' + barOffset.top + '</p>')
+	.append('<p>#bar offset.left: ' + barOffset.left + '</p>')
+
+	.append('<p>ID of #foo offsetParent: '+ $fooOffsetParent.attr('id') + '</p>')
+	.append('<p>ID of #bar offsetParent: '+ $barOffsetParent.attr('id') + '</p>');
+})
+</script>
+</html>

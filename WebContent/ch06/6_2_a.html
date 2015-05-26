@@ -1,0 +1,41 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<title></title>
+<style type="text/css">
+#myDiv {
+	width:100px;
+	height:30px;
+	padding:10px;
+	border: solid 2px;
+	color: blue;
+}
+</style>
+</head>
+
+
+<body>
+<div id="results"></div>
+<div id="myDiv">Some text.</div>
+
+
+</body>
+<script type="text/javascript">
+jQuery(document).ready(function () {
+	var $myDiv = jQuery('#myDiv');
+	var $results = jQuery('#results');
+
+	jQuery('<p>Computed width: ' +$myDiv.width() + '</p>').appendTo($results);
+	jQuery('<p>Computed height: ' +$myDiv.height() + '</p>').appendTo($results);	
+
+	jQuery('<p>Inner width: '+ $myDiv.innerWidth() + '</p>').appendTo($results);
+	jQuery('<p>Inner height: '+ $myDiv.innerHeight() + '</p>').appendTo($results);
+
+	jQuery('<p>Outer width: '+$myDiv.outerWidth() + '</p>').appendTo($results);
+	jQuery('<p>Outer height: '+$myDiv.outerHeight() + '</p>').appendTo($results);
+
+	
+
+})
+</script>
+</html>

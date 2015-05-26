@@ -1,0 +1,109 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<style type="text/css">
+	#foo{
+		width: 300px;
+		padding: 10px;
+		border: 1px solid black;
+		position: relative;
+		overflow: auto;
+	}
+</style>
+</head>
+
+<body>
+<div id="foo">
+	<p>
+		This is the first paragraph. Lorem ipsum dolor sit amet, consectetur 
+		adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+		aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+		ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+		id est laborum.
+	</p>
+	<p>
+		This is the second paragraph. Lorem ipsum dolor sit amet, consectetur 
+		adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+		aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+		ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+		id est laborum.
+	</p>
+	<p>
+		This is the third paragraph. Lorem ipsum dolor sit amet, consectetur 
+		adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+		aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+		ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+		id est laborum.
+	</p>
+	<p>
+		This is the fourth paragraph. Lorem ipsum dolor sit amet, consectetur 
+		adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+		aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+		ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+		id est laborum.
+	</p>
+	<p>
+		This is the fifth paragraph. Lorem ipsum dolor sit amet, consectetur 
+		adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+		aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+		ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+		id est laborum.
+	</p>
+	<p>
+		This is the sixth paragraph. Lorem ipsum dolor sit amet, consectetur 
+		adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+		aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+		ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+		id est laborum.
+	</p>
+	<p>
+		This is the seventh paragraph. Lorem ipsum dolor sit amet, consectetur 
+		adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+		aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+		ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+		id est laborum.
+	</p>
+</div>
+</body>
+<script type="text/javascript">
+jQuery(document).ready(function () {
+	var viewportWidth = jQuery(window).width(),
+	viewportHeight = jQuery(window).height(),
+	documentScrollTop = jQuery(document).scrollTop(),
+	documentScrollLeft = jQuery(document).scrollLeft(),
+
+	$myElement = jQuery('#foo > p:eq(2)'),
+
+	elementOffset = $myElement.offset(),
+	elementHeight = $myElement.height(),
+	elementWidth = $myElement.width(),
+
+	minTop = documentScrollTop,
+	maxTop = documentScrollTop + viewportHeight,
+	minLeft = documentScrollLeft,
+	maxLeft = documentScrollLeft + viewportWidth;
+	console.log($myElement.length);
+
+	if((elementOffset.top > minTop && elementOffset.top + elementHeight < maxTop)&&
+	(elementOffset.left > minLeft && elementOffset.left + elementWidth < maxLeft)){
+		alert('entire element is visible');
+	} else {
+		alert('entire element is not visivble');
+	}
+});
+</script>
+</html>
