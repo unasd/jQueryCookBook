@@ -1,0 +1,22 @@
+<html>
+<head>
+<style type="text/css">
+	html.no-message #message{display:none;}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+	// 나쁨
+	jQuery(document).ready(function ($) {
+		$('#message').hide();
+	});
+
+	// 좋음
+	jQuery('html').addClass('no-message');
+	// 또는 ...
+	document.documentElement.className = 'no-message';
+</script>
+</head>
+<body>
+	<p id="message">I should not be visible</p>
+</body>
+</html>

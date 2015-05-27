@@ -1,0 +1,30 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+<input type="button" id="button1" value="button1"/>
+<input type="button" id="button2" value="button2"/>
+<input type="button" id="button3" value="button3"/>
+<br/><br/>
+<div id="panel1" class="panel">panel1</div><br/><br/>
+<div id="panel2" class="panel">panel2</div><br/><br/>
+<div id="panel3" class="panel">panel3</div><br/><br/>
+
+<div id="desc"></div>
+
+
+</body>
+<script type="text/javascript">
+jQuery.each(['red', 'blue', 'green'], function (num, color) {
+	num++; // 이는 0을 시작으로 하는 인덱스이다 
+	console.log(num+' / '+color);
+	jQuery('#button'+num).bind('click', function(e){
+		console.log(num+' / '+color);
+		jQuery('div.panel').hide();
+		jQuery('#panel'+num).show();
+		jQuery('#desc').text('You clicked the '+color+' button');
+	});
+});
+</script>
+</html>

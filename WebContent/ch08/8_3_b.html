@@ -1,0 +1,23 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="ch08/8_3_a.js"></script> -->
+<script type="text/javascript" src="8_3_a.js"></script>
+</head>
+<body>
+	<div id="div1">
+		<div class="bind">divClick</div><br/><br/>
+		<div class="bind">divMdown</div><br/><br/>
+		<input type="button" class="bind" value="click"/><br/><br/>
+		<input type="button" id="unbindBtn" value="unbind"/>
+	</div><br/><br/>
+
+
+</body>
+<script type="text/javascript">
+jQuery('#div1 .bind').myPlugin();
+jQuery('#unbindBtn').click(function (argument) {
+	$('#div1 .bind').disposeMyPlugin();
+});
+</script>
+</html>

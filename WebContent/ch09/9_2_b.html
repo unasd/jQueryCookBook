@@ -1,0 +1,32 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="9_2_b.js"></script>
+</head>
+<body>
+	<select name="sweets" multiple="multiple">
+		<option>Chocolate</option>
+		<option selected="selected">Candy</option>
+		<option>Taffy</option>
+		<option selected="selected">Caramel</option>
+		<option>Fudge</option>
+		<option>Cookie</option>
+	</select>	
+	<div id="text1"></div>
+
+<script type="text/javascript">
+	jQuery.page = jQuery.listener({
+		title: 'Start',
+		chageTo: function(title){
+			this.title = title;
+			this.trigger('change');
+		}
+	});
+	jQuery.page.chageTo('Inbox');
+
+	jQuery.page.bind('change', function(e){
+		jQuery('#text1').text('Page is '+this.title);
+	});
+</script>
+</body>
+</html>

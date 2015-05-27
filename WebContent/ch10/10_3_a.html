@@ -1,0 +1,63 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p>How did you hear about us?</p>
+	<ul id="chooseSource">
+		<li>
+			<input name="source", id="source1" type="radio" value="www" />
+			<label for="source1">Website or Blog</label>
+		</li>
+		<li>
+			<input name="source", id="source2" type="radio" value="mag" />
+			<label for="source2">Magazine</label>
+		</li>
+		<li>
+			<input name="source", id="source3" type="radio" value="per" />
+			<label for="source3">Friend</label>
+		</li>
+		<li>
+			<input name="source", id="source4" type="radio" value="oth" />
+			<label for="source4">Other</label>
+			<input name="source4txt" id="source4txt" type="text" />
+		</li>
+		<li>
+			<input name="source", id="source5" type="radio" value="oth1" />
+			<label for="source5">Other1</label>
+			<input name="source5txt" id="source5txt" type="text" />
+		</li>
+		<li>
+			<input name="source", id="source6" type="radio" value="oth2" />
+			<label for="source6">Other2</label>
+			<input name="source6txt" id="source6txt" type="text" />
+		</li>
+	</ul>
+
+	<input type="button" value="radio 초기화"/>
+
+
+<!-- 스크립트 영역 -->
+<script type="text/javascript">
+/**
+*  input text 요소에 값이 입력될 경우 해당 라디오박스를 자동 선택 
+**/
+// ul요소 하부의 모든 input text요소에 바인딩 
+$('#chooseSource input:text').on('focusout', function () {
+	$inputText = $(this);
+	$radioButton = $inputText.siblings('input:radio');
+
+	//$inputText.on('focusout', function(){
+		if($inputText.val() != ''){
+			$radioButton.attr('checked', true);
+		}
+	//});
+});
+
+$('input:button').on('click', function () {
+	$('#chooseSource input:radio').attr('checked', false);
+});
+</script>
+</body>
+</html>

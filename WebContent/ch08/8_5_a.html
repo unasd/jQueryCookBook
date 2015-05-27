@@ -1,0 +1,26 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+<form action="#">
+	<input type="text" id="name" /><br/><br/>
+	<input type="text" id="surname" /><br/><br/>
+	<input type="text" id="age" /><br/><br/>
+	<input type="text" id="extra" /><br/><br/>
+	<input type="submit" value="submit" />
+</form>
+</body>
+<script type="text/javascript">
+//jQuery('form').trigger('submit', ['John', 'Doe', 28, {gender: 'M'}]);
+/*jQuery('form').on('submit', function (e, name, surname, age, extra) {
+	console.log(name+' / '+surname+' / '+age+' / '+extra);
+});*/
+
+
+jQuery('form').trigger('click', ['John','Doe', 28, {gender:'M'}]);
+jQuery('form').on('click', function(e, name, surname, age, extra){
+	console.log(name+' / '+surname+' / '+age+' / '+extra);
+});
+</script>
+</html>

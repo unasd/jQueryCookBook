@@ -1,0 +1,29 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+<input type="button" id="button1" value="button1"/>
+<input type="button" id="button2" value="button2"/>
+<input type="button" id="button3" value="button3"/>
+<br/><br/>
+<div id="panel1" class="panel">panel1</div><br/><br/>
+<div id="panel2" class="panel">panel2</div><br/><br/>
+<div id="panel3" class="panel">panel3</div><br/><br/>
+
+<div id="desc"></div>
+
+
+</body>
+<script type="text/javascript">
+function buttonClicked(e){
+	jQuery('div.panel').hide();
+	jQuery('#panel'+e.data.panel).show();
+	jQuery('#desc').text('You clicked the '+e.data.color+' button');
+}
+
+jQuery('#button1').bind('click', {panel:1, color:'red'}, buttonClicked);
+jQuery('#button2').bind('click', {panel:2, color:'blue'}, buttonClicked);
+jQuery('#button3').bind('click', {panel:3, color:'green'}, buttonClicked);
+</script>
+</html>

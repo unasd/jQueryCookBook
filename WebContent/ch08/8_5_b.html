@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+<div id="slideshow"></div>
+</body>
+<script type="text/javascript">
+jQuery('#slideshow').bind('add-image', function (e, src) {
+	var $img = jQuery('<img/>').attr('src', src);
+	jQuery(this).append($img);
+});
+
+jQuery('#slideshow').trigger('add-image', 'desert.jpg');
+</script>
+</html>

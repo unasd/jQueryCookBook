@@ -1,0 +1,61 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+	<fieldset id="shippingInfo">
+		<legend>Shipping Address</legend>
+
+		<label for="shipName">Name</label>
+		<input name="shipName" id="shipName" type="text"/>
+
+		<label for="shipAddress">Address</label>
+		<input name="shipAddress" id="shipAddress" type="text"/>
+	</fieldset>
+<br/><hr/><br/>
+	<fieldset id="billingInfo">
+		<legend>Billing Address</legend>
+
+		<label for="sameAsShipping">Same ad Shipping</label>
+		<input name="sameAsShipping" id="sameAsShipping" type="checkbox" value="sameAsShipping" />
+
+		<label for="billName">Name</label>
+		<input name="billName" id="billName" type="text" />
+
+		<label for="billAddress">Address</label>
+		<input name="billAddress" id="billAddress" type="text" />
+	</fieldset>
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#sameAsShipping').change(function () {
+		if(this.checked){
+			$('#billingInfo input:text').attr('disabled', 'disabled').each(function (i) {
+				var valueFromShippingInput = $('#shippingInfo input:text:eq('+i+')').val();
+				$(this).val(valueFromShippingInput);
+			});
+		} else {
+			$('#billingInfo input:text').removeAttr('disabled');
+		}
+	}).trigger('change');
+
+
+	/**
+	* 선적정보의 값을 지불정보에 반영
+	**/
+	// shippingInfo요소 내부의 input text요소의 keyup change 이벤트 발생시 
+	$('#shippingInfo input:text').on('keyup change', function () {
+		// sameAsShipping 체크박스 체크돼 있을 때만 
+		if($('#sameAsShipping:checked').length){
+			// 어떤 선적정보 요소의 이벤트가 발생한 것인지 알아내고 
+			// 해당 값을 같은 이름의 지불정보 요소에 적용한다 
+			var i = $('#shippingInfo input:text').index(this);
+			var valueFromShippingInput = $(this).val();
+			$('#billingInfo input:text:eq('+i+')').val(valueFromShippingInput);
+		}
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+jQuery.fn.myPlugin = function () {
+	return this
+	.bind('click.myPlugin', function(){
+		alert('click');
+	})
+	.bind('mousedown.myPlugin', function(){
+		alert('mousedown');
+	});
+};
+</script>
+</html>
