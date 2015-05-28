@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html,js; charset=UTF-8">
+</head>
+<body>
+    <textarea id="1"></textarea>
+    <div class="remaining">Characters remaining: <span class="count" id="1">300</span></div>
+    <br/><br/><br/>
+    <textarea id="2"></textarea>
+    <div class="remaining">Characters remaining: <span class="count" id="2">500</span></div>
+    
+
+<!-- 스크립트 -->
+<script>
+    /*var textLimit;
+    $('textarea').on('input', function(){
+        $textarea = $(this);
+        $count = $(this).next().children('span');
+        console.log($textarea.attr('id')+' / '+$count.attr('id'));
+        
+        var textLength = $textarea.val().length;
+        textLimit = $count.text()*1;
+        var currLimit = textLimit-textLength;
+        
+        if(currLimit < 0){
+            var str = $textarea.val();
+            $textarea.val(str.substr(0, textLimit));    
+            return;
+        }
+        $count.text(currLimit);
+    });*/
+    
+    /**
+    *  위와 같은 형식의 요소가 여러개 일 때 하나의 이벤트처리기로 처리할 수 있다.
+    **/
+    $('.remaining').each(function(){
+        var $count = $('.count', this);
+        var $textarea = $(this).prev();
+        
+        console.log($count.text());
+        var maxLength = $count.text()*1;
+        
+        
+        // update함수는 keyup, paste, input 이벤트에서 호출된다. 
+        var update = function(){
+            //var before = $count.text()*1;
+            var before = $count.text()*1;
+            var now = maxLength - $textarea.val().length;
+            
+            // 사용자가 입력한 값이 제한 값을 초과하는지를 검사한다. 
+            if(now<0){
+                var str = $input.val();
+                $input.val(str.substr(0,maxLength));
+                now = 0;
+            }
+            
+            // 필요한 경우 DOM을 수정한다. before와 now의 값이 불일치할 때 now값으로 수정 
+            if(before != now){
+                $count.text(now);
+            }
+        };
+        
+        // input, keyup, paste 이벤트와 update 함수를 바인드 한다.
+        $textarea.on('input keyup paste', function(){setTimeout(update(),0)});
+        
+        update();
+    });
+</script>
+</body>
+</html>

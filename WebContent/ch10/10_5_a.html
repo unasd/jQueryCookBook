@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html,js; charset=UTF-8">
+</head>
+<body>
+    <fieldset>
+
+    <legend>Reasons to be happy</legend>
+
+    <input name="reasons" id="toggleAllReasons" type="checkbox" class="toggle" />
+    <label for="toggleAllReasons" class="toggle">Select All</label><br/><br/>
+
+    <input name="reasons" id="iwokeup" type="checkbox" value="iwokeup" />
+    <label for="iwokeup">I woke up</label>
+
+    <input name="reasons" id="health" type="checkbox" value="health" />
+    <label for="health">My health</label>
+
+    <input name="reasons" id="family" type="checkbox" value="family" />
+    <label for="family">My family</label>
+
+    <input name="reasons" id="sunshine" type="checkbox" value="sunshine" />
+    <label for="sunshine">The sun is shining</label>
+
+</fieldset>
+    
+    
+<!-- 스크립트 -->
+<script>
+    var $toggle = $('#toggleAllReasons');
+    var $checkboxes = $('#toggleAllReasons').siblings('input:checkbox');
+    
+    $('#toggleAllReasons').on('change', function() {
+        
+        if($toggle.prop('checked')){
+            $checkboxes.prop('checked', true);
+        } else {
+            $checkboxes.removeAttr('checked');
+        }
+    });
+    
+    $checkboxes.on('change', function(){
+        //alert($checkboxes.filter(':checked').length);
+        if($checkboxes.filter(':checked').length == $checkboxes.length){
+            $toggle.prop('checked', true);
+        } else {
+            $toggle.removeAttr('checked');
+        }
+    });
+        
+</script>
+</body>
+</html>

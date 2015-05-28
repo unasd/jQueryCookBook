@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html,js; charset=UTF-8">
+<style type="text/css" title="text/css">
+    div.question {
+        padding: 1em;
+    }
+    div.errorMessage {
+        display: none;
+    }
+    div.showErrorMessage {
+        display: block;
+        color: #f00;
+        font-weight: bold;
+        font-style: italic;
+    }
+    label.error {
+        color: #f00;
+        font-style: italic;
+    }
+</style>
+</head>
+<body>
+<form action="process.php">
+
+<!-- TEXT -->
+<div class="question">
+    <label for="t">Username</label>
+    <input id="t" name="user" type="text" class="required" />
+    <div id="errorMessage_user" class="errorMessage">Please enter your username.</div>
+</div>
+
+<!-- PASSWORD -->
+<div class="question">
+    <label for="p">Password</label>
+    <input id="p" name="pass" type="password" class="required" />
+    <div id="errorMessage_pass" class="errorMessage">Please enter your password.</div>
+</div>
+
+<!-- SELECT ONE -->
+<div class="question">
+    <label for="so">Favorite Color</label>
+    <select id="so" name="color" class="required">
+        <option value="">Select a Color</option>
+        <option value="ff0000">Red</option>
+        <option value="00ff00">Green</option>
+        <option value="0000ff">Blue</option>
+    </select>
+    <div id="errorMessage_color" class="errorMessage">Please select your favorite 
+color.</div>
+</div>
+
+<!-- SELECT MULTIPLE -->
+<div class="question">
+    <label for="sm">Favorite Foods</label>
+    <select id="sm" size="3" name="foods" multiple="multiple" class="required">
+        <option value="pizza">Pizza</option>
+        <option value="burger">Burger</option>
+        <option value="salad">Salad</option>
+    </select>
+    <div id="errorMessage_foods" class="errorMessage">Please choose your favorite 
+foods.</div>
+</div>
+
+<!-- RADIO BUTTONS -->
+<div class="question">
+    <span>Writing Hand:</span>
+    <input id="r1" type="radio" name="hand" class="required"/>
+    <label for="r1">Left</label>
+    <input id="r2" type="radio" name="hand" class="required" />
+    <label for="r2">Right</label>
+    <div id="errorMessage_hand" class="errorMessage">Please select what hand you 
+write with.</div>
+</div>
+
+<!-- TEXTAREA -->
+<div class="question">
+    <label for="tt">Comments</label>
+    <textarea id="tt" name="comments" class="required"></textarea>
+    <div id="errorMessage_comments" class="errorMessage">Please tell us what you 
+think.</div>
+</div>
+
+<!-- CHECKBOX -->
+<div class="question">
+    <input id="c" type="checkbox" name="legal" class="required" />
+    <label for="c">I agree with the terms and conditions</label>
+    <div id="errorMessage_legal" class="errorMessage">Please check the box!</div>
+</div>
+
+<input type="submit" value="Continue" />
+
+</form>
+    
+    
+<script>
+$('form').submit(function(event){
+
+    var isErrorFree = true;
+
+    // iterate through required form elements and check to see if they are valid
+    $('input.required, select.required, textarea.required',this).each(function(){
+        if ( validateElement.isValid(this) == false ){
+            isErrorFree = false;
+        };
+    });
+
+    // Ajax alternatives:
+    // event.preventDefault();
+    // if (isErrorFree){ $.get( url, data, callback, type ) }
+    // if (isErrorFree){ $.post( url, data, callback, type ) }
+    // if (isErrorFree){ $.ajax( options ) }
+
+    return isErrorFree;
+
+}); // close .submit()
+    
+    var validateElement = {
+
+    isValid:function(element){
+
+        var isValid = true;
+        var $element = $(element);
+        var id = $element.attr('id');
+        var name = $element.attr('name');
+        var value = $element.val();
+
+        // <input> uses type attribute as written in tag
+        // <textarea> has intrinsic type of 'textarea'
+        // <select> has intrinsic type of 'select-one' or 'select-multiple'
+        var type = $element[0].type.toLowerCase();
+
+        switch(type){
+            case 'text':
+            case 'textarea':
+            case 'password':
+                if ( value.length == 0 ||  value.replace(/\s/g,'').length == 0 ){ isValid = false; }
+                break;
+            case 'select-one':
+            case 'select-multiple':
+                if( !value ){ isValid = false; }
+                break;
+            case 'checkbox':
+            case 'radio':
+                if( $('input[name="' + name + '"]:checked').length == 0 ){ isValid = false; };
+                break;
+        } // close switch()
+
+        // instead of $(selector).method we are going to use $(selector)[method]
+        // choose the right method, but choose wisely
+        var method = isValid ? 'removeClass' : 'addClass';
+
+        // show error message [addClass]
+        // hide error message [removeClass]
+        $('#errorMessage_' + name)[method]('showErrorMessage');
+        $('label[for="' + id + '"]')[method]('error');
+
+        return isValid;
+
+    } // close validateElement.isValid()
+}; // close validateElement object
+</script>
+</body>
+</html>

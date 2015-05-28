@@ -8,8 +8,7 @@
 	<fieldset>
 		<legend>Reasons to be happy</legend>
 
-		<span class="selectAll">Select All</span> <strong>/</strong>
-		<span class="deselectAll">Deselect All</span>
+		<input type="checkbox" class="selectAll" />Select or Deselect All<br/><br/>
 
 		<input name="reasons" id="iwokeup" type="checkbox" value="iwokeup"/>
 		<label for="iwokeup">I woke up</label>
@@ -27,7 +26,18 @@
 
 <!-- 스크립트 영역 -->
 <script type="text/javascript">
-    $(function(){
+$('.selectAll').on('change', function () {
+	//console.log($(this));
+	if($(this).prop('checked')){
+		$('[name="reasons"]').prop("checked", true);
+	} else {
+		$('[name="reasons"]').removeAttr("checked");
+	}
+	
+});
+
+
+  /*  $(function(){
         $('.selectAll').on('click', function(e){
             $("[type='checkbox']").prop("checked", "checked");
         });
@@ -35,7 +45,7 @@
         $('.deselectAll').on('click', function(e){
             $("[type='checkbox']").removeAttr("checked");
         });
-    });
+    });*/
 </script>
 </body>
 </html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html,js; charset=UTF-8">
+<style type="text/css" title="text/css">
+    div.question {
+        padding: 1em;
+    }
+    div.errorMessage {
+        display: none;
+    }
+    div.showErrorMessage {
+        display: block;
+        color: darkviolet;
+        font-weight: bold;
+        font-style: italic;
+    }
+    label.error{
+        color: cadetblue;
+        font-style: italic;
+    }
+</style>
+</head>
+<body>
+    <form action="10_11_process.html">
+        <!--사용자 이름 text input-->
+        <div class="question">
+            <label for="t">Username</label>
+            <input id="t" name="user" type="text" class="required"/>
+            <div id="errorMessage_user" class="errorMessage">
+            Please enter your username.</div>
+        </div>
+        
+        <!--비밀번호 password input-->
+        <div class="question">
+            <label for="p">Password</label>
+            <input id="p" name="pass" type="password" class="required"/>
+            <div id="errorMessage_pass" class="errorMessage">
+            Please enter your password.</div>
+        </div>
+        
+        <!--단일항목 선택 select-->
+        <div class="question">
+            <label for="so">Favorite Color</label>
+            <select id="so" name="color" class="required">
+                <option value="">Select a Color</option>
+                <option value="ff0000">Red</option>
+                <option value="00ff00">Green</option>
+                <option value="0000ff">Blue</option>
+            </select>
+            <div id="errorMessage_color" class="errorMessage">
+            Please select your favorite color.</div>
+        </div>
+        
+        <!--다중항목 선택 select-->
+        <div class="question">
+            <label for="sm">Favorite Foods</label>
+            <select id="sm" name="foods" size="3" class="required" multiple="mutiple">
+                <option value="pizza">Pizza</option>
+                <option value="burger">Burger</option>
+                <option value="salad">Salad</option>
+            </select>
+            <div id="errorMessage_foods" class="errorMessage">
+            Please choose your favorite foods.</div>
+        </div>
+        
+        <!--radiobutton-->
+        <div class="question">
+            <span>Writing Hand:</span>
+            <input id="r1" type="radio" name="hand" class="required"/>
+            <label for="r1">Left</label>
+            <input id="r2" type="radio" name="hand" class="required"/>
+            <label for="r2">Right</label>
+            <div id="errorMessage_hand" class="errorMessage">
+            Please select what hand you write with.</div>
+        </div>
+        
+        <!--radiobutton-->
+        <div class="question">
+            <span>Kicking Foot:</span>
+            <input id="r3" type="radio" name="foot" class="required"/>
+            <label for="r3">Left</label>
+            <input id="r4" type="radio" name="foot" class="required"/>
+            <label for="r4">Right</label>
+            <div id="errorMessage_foot" class="errorMessage">
+            Please select what foot you kick with.</div>
+        </div>
+        
+        <!--TextArea-->
+        <div class="question">
+            <label for="tt">Comments</label>
+            <textarea id="tt" name="comments" class="required"></textarea>
+            <div id="errorMessage_comments" class="errorMessage">
+            Please tell us what you think.</div>
+        </div>
+        
+        <!--checkbox-->
+        <div class="question">
+            <input id="c" type="checkbox" name="legal" class="required"/>
+            <label for="c">I agree with the terms and conditions</label>
+            <div id="errorMessage_legal" class="errorMessage">
+            Please check the box!</div>
+        </div>
+        
+        <input type="submit" value="Continue"/>
+    </form>
+
+    
+    
+<!--스크립트-->
+<script type="text/javascript">
+    $('form').on('submit', function(event){
+        var isErrorFree = true;
+        
+        // 유효성 검사를 해야 하는 폼 요소들을 선택한 후 요소들이 유효한지 검사 
+        $('input.required, select.required, textarea.required', this).each(function(){
+            if(validateElement.isValid(this) == false){
+               isErrorFree = false;
+            };
+        }); // each 끝
+        
+        return isErrorFree;
+    }); // .submit() 끝
+    
+    var validateElement = {
+        
+        stripWhitespace:function(str){
+            return str.replace(/\s/g,'');
+        },
+        
+        isValid:function(element){
+            
+            // 빈번히 쓰이는 요소를 변수에 저장 
+            var isValid = true;
+            var $element = $(element);
+            var id = $element.attr('id');
+            var name = $element.attr('name');
+            var value = $element.val();
+            
+            // 비슷한 작업을 수행할 수 있는 요소들 끼리 분기처리 
+            // input 요소는 태그로 작성되어 있는 type 어트리뷰터를 사용
+            // textarea 요소는 textarea의 고유형식 사용
+            // select 요소는 select-one 또는 select-multiple
+            var type =$element[0].type.toLowerCase();
+            
+            switch(type){
+                case 'text':
+                case 'textarea':
+                case 'password':
+                    /*if(value.length ==0 || value.replace(/\s/g,'').length == 0){
+                        isValid = false;
+                    }*/
+                    if(this.stripWhitespace(value).length == 0){
+                        isValid = false;
+                    }
+                    break;
+                case 'select-one':
+                case 'select-multiple':
+                    if(!value){isValid = false;}
+                    break;
+                case 'checkbox':
+                case 'radio':
+                    if($('input[name="'+name+'"]:checked').length == 0) {
+                        isValid = false;
+                    }
+                    break;
+            } // switch 끝
+            
+            // $(selector).method 대신에 $(selector)[method]를 사용 
+            var method = isValid ? 'removeClass' : 'addClass';
+            
+            $('#errorMessage_'+name)[method]('showErrorMessage');
+            
+            /*if(type == 'checkbox' || type == 'radio'){
+                $('input[name="'+name+'"]').each(function(){
+                    $('label[for="'+this.id+'"]')[method]('error');
+                });
+            } else {*/
+                $('label[for="'+id+'"]')[method]('error');
+            //}
+            
+            $element.off('change.isVaild')
+                    .on('change.isVlid', function(){validateElement.isValid(this);});
+            
+            return isValid;
+        } // validateElement.isValid 끝
+    }; // validateElement 끝
+</script>
+</body>
+</html>

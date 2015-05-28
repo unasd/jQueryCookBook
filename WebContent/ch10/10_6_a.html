@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html,js; charset=UTF-8">
+</head>
+<body>
+    <label for="colors">Colors</label><br/><br/>
+    <select id="colors" multiple="multiple">
+        <option>Black</option>
+        <option>Blue</option>
+        <option>Brown</option>
+    </select>
+    <hr/>
+    
+    <button id="remove">Remove Selected Color(s)</button><br/><br/>
+    
+    <label for="newColorName">New Color Name</label>
+    <input id="newColorName" type="text"/>
+    
+    <label for="newColorValue">New Color Value</label>
+    <input id="newColorValue" type="text"/>
+    
+    <button id="add">Add New Color</button>
+    
+<!-- 스크립트 -->
+<script>
+    $selectColors = $('#colors');
+    
+    /**
+    *  선택한 색상옵션 제거 
+    *
+    **/
+    $('#remove').on('click', function(){
+        $selectColors.children('option:checked').remove();
+    });
+    
+    
+    /**
+    *  색상옵션 추가 
+    *
+    **/
+    $('#add').on('click', function(){
+        var newColorName = $('#newColorName').val();
+        var newColorValue = $('#newColorValue').val();
+          
+        //var $newColor = $('<option>'+newColorName+'</option>');
+        //$newColor.appendTo($selectColors);
+        
+        //$('<option/>').val(newColorValue).text(newColorName).appendTo($selectColors);
+        
+        $('<option/>', {
+            value : newColorValue,
+            text : newColorName
+        }).appendTo($selectColors);
+    });
+</script>
+</body>
+</html>
