@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html,js; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="/WebContent/assets/jquery.validate.js"></script>
+<!--<script src="/WebContent/assets/additional-methods.js"></script>-->
+<!--<script src="/WebContent/assets/messages_ko.js"></script>-->
+<style>
+    *{font-family: Verdana; font-size: 96%}
+    label {width: 10em; float: left;}
+    label.error {float: none; color: red; padding-left: .5em; vertical-align: top;}
+    div {clear: both;}
+    input, textarea {width: 15em;}
+    .submit {margin-left: 10em;}
+</style>
+<script>
+    jQuery(document).ready(function($){
+        $("#commentForm").validate({
+            rules:{
+                email:{
+                    required: true,
+                    email: true
+                },
+                inputdomain:{domain:true },
+                inputmath: {math: 3}
+            }
+        });
+        
+        $("#cname").rules("add", {maxlength: 10});
+        
+
+        $.validator.addMethod("domain", function(value, element){
+            return this.optional(element) ||
+                /^http:\/\/misotech.net/.test(value);
+        }, "Please specify the correct domain for your documents");
+        
+        jQuery.validator.addMethod("math", function(value, element, params){
+            return this.optional(element) || value == params[0] + params[1];
+        }, jQuery.validator.format("Please enter the correct value for {0} + {1}"));
+        
+        
+        
+        /*$("#myForm").validate({
+            rules: {
+                name: {
+                    required: true,
+                    minLength: 2
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                url: "url",
+                comment: "required"
+            }
+        });*/
+    });
+</script>
+</head>
+<body>
+    <form id="commentForm" method="get" action="">
+        <fieldset>
+            <legend>서브밋 검증과 기본 메세지를 이용한 간단한 코멘트 폼</legend>
+            <div>
+                <label for="cname">Name</label>
+                <input id="cname" name="name" class="required" minlength="2"/>
+            </div>
+            <div>
+                <label for="cemail">E-Mail</label>
+                <input id="cemail" name="email"/>
+            </div>
+            <div>
+                <label for="curl">URL (optional)</label>
+                <input id="curl" name="url" class="url" value=""/>
+            </div>
+            <div>
+                <label for="ccomment">Your comment</label>
+                <textarea id="comment" name="comment" class="required"></textarea>
+            </div>
+            <div>
+                <label for="cinputdomain">domain</label>
+                <input id="cinputdomain" name="inputdomain" class="required" />
+            </div>
+            <div>
+                <label for="cmath">math</label>
+                <input id="cmath" name="inputmath" class="required" />
+                <!--<input id="inputmathConf" name="inputmathConf" class="required" />
+                <input id="cmathConf1" name="inputmathConf" class="required" />-->
+            </div>
+           <!-- <div>
+                <label for="cemail2">email2</label>
+                <input type="text" name="email2" class="{required:true, email2:true}"/>
+            </div>-->
+            <div>
+                <input class="submit" type="submit" value="Submit"/>
+            </div>
+        </fieldset>
+    </form>
+    
+    <!--<form id="myForm" method="get" action="">
+        <input type="text" name="email" class="{required:true, email:true}"/>
+    </form>-->
+    
+</body>
+</html>
