@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html,js; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="/WebContent/assets/jquery.validate.js"></script>
+<!--<script src="/WebContent/assets/additional-methods.js"></script>-->
 <style>
     *{font-family: Verdana; font-size: 96%}
     label {width: 10em; float: left;}
@@ -14,21 +15,37 @@
 </style>
 <script>
 $(document).ready(function(){
+    // loginform이 submit 될때 가로채어 유효성검사 메소드가 실행됨
     $("#loginform").validate({
         rules:{
             username: "required",
             password: "required",
+            // newsletter 라는 checkbox요소가 선택된 경우에만 email필드가 필수 입력되기를 원할 때
             email: {
                     required: "#newsLetter:checked",
                     email: true
             },
+            // 다른 여러 필드들의 상태에 의존하는 경우 콜백을 사용할 수 있다
             email2: {
                     required: function(element){
-                        return $("#newsLetter:checked").length && $("#telephone:blank");
-                    }
+                        // NewsLetter 체크 되었는데 telephone 입력되지 않았을 때
+                        return $("#newsLetter:checked").length>0 && $("#telephone:blank").length>0;
+                    },
+                    email: true
             }
-        } 
+        },
+        messages: {
+            email4: {
+                  required: "Required",
+                   email: "Not a valid email address"
+              }
+         }
     });
+    
+    $.validator.addMethod("email_domain", function(value, element){
+            return this.optional(element) ||
+                /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; .test(value);
+        }, "Please specify the correct domain for your documents");
     
     $("a#forgotPassword").click(function(e){
         $("#password").rules("remove", "required");
@@ -37,15 +54,20 @@ $(document).ready(function(){
         return false;
     });
     
-    $("#zzz").click(function(){
-        $( "input:blank" ).css( "background-color", "#bbbbff" );
+    $("#email5").rules("add", {
+        messages: {
+            email: "A valid email address, please!"
+        }
     });
     
+    $("#zzz").click(function(){
+        $( "#telephone:blank" ).css( "background-color", "#bbbbff" );
+    });
 });
 </script>
 </head>
 <body>
-    <form id="loginform" action="" method="get">
+    <form id="loginform" action="" method="post">
         <fieldset><legend>비밀번호 분실링크에서 유효성 검사 제거/추가</legend>
             <div>
                 <label for="username">Username</label>
@@ -53,7 +75,7 @@ $(document).ready(function(){
             </div>
             <div>
                 <label for="password">Password</label>
-                <input id="password" name="password"/>
+                <input id="password" name="password" type="password" minlength="6"/>
             </div>
             <div>
                 <input class="submit" type="submit" value="Submit"/>
@@ -81,6 +103,30 @@ $(document).ready(function(){
             <div>
                 <label for="eamil2">Email2</label>
                 <input name="email2"/>
+            </div>
+        </fieldset><br/><br/>
+        
+        <fieldset><legend>title속성으로 오류메시지 지정</legend>
+            <div>
+                <input name="email3" class="required email" title="A valid email address is required"/>
+            </div>
+        </fieldset><br/><br/>
+        
+        <fieldset><legend>각각의 규칙에 개별적 오류메시지</legend>
+            <div>
+              <input name="email4" class="required email"/>
+            </div>
+        </fieldset><br/><br/>
+        
+        <fieldset><legend>rules라는 플러그인 메서드를 사용해 오류메시지를 동적으로 지정</legend>
+            <div>
+              <input name="email5" class="required email"/>
+            </div>
+        </fieldset>
+        
+        <fieldset><legend>정규식 이메일 검증</legend>
+            <div>
+              <input name="email6"/>
             </div>
         </fieldset>
     </form>
